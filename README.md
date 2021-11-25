@@ -1,7 +1,7 @@
 # smartContracts
 
 ####
-Our system has 2 types of tokens: BTCZ - max supply: 200 million and BTCY - max supply 5 billion tokens
+Our system has 2 types of tokens: BCTZ - max supply: 200 million and BCTY - max supply 5 billion tokens
 
 - BCTZ: https://bscscan.com/token/0xAF2d5943cddf961E79Ba1265319D5338dcb3A31A
 - BCTY: https://bscscan.com/token/0x53b384151607c2c7c56a8884621b0ee494556c3c
@@ -9,9 +9,9 @@ Our system has 2 types of tokens: BTCZ - max supply: 200 million and BTCY - max 
 
 - BCTZ will be divided into addresses with different holding rate and unlocking time
 - Tokenomics Contract: https://bscscan.com/address/0x5A1BEEe829fd2Ab93743C42BBf08a5fc620c226d
-- Check BTCZ init minters: 
+- Check BCTZ init minters: 
 ```
-initMinters = ['angel', 'seed', 'private', 'public', 'boundty', 'award', 'marketing', 'liquidity', 'ecosystem', 'team', 'partner'];
+initMinters = ['angel', 'seed', 'private', 'public', 'boundty', 'reward', 'marketing', 'liquidity', 'ecosystem', 'team', 'partner'];
 ```
 
 ```
@@ -23,7 +23,7 @@ initMintersPercent = [2.5%, 5%, 11%, 0.7%, 0.1%, 18.1%, 9%, 20%, 13.6%, 15%, 5%]
   minterAddress['private'] = 0xa1f69442905f6c6A940c157EA02E8aa1e1AD056F;
   minterAddress['public'] = 0x1a6fd4B1487f38d847b45A8Ca2198D25fbBA7977;
   minterAddress['boundty'] = 0x1226592A0C9eDa29DF2b044cB6C2DF5ac8b7b9ab;
-  minterAddress['award'] = 0x8d4F0A10132bD9bdC8f8B0080AAdDa3ca32203ef;
+  minterAddress['reward'] = 0x8d4F0A10132bD9bdC8f8B0080AAdDa3ca32203ef;
   minterAddress['marketing'] = 0x8A6c91350e93C39fb6407a8d4539989cCbeC7C70;
   minterAddress['liquidity'] = 0x011AE7654601b4Be8448BcdE223A872eCB52213e;
   minterAddress['ecosystem'] = 0x01252C690236eC406526C74c11B1ba8ee6E9260F;
