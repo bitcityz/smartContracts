@@ -3,12 +3,12 @@
 ####
 Our system has 2 types of tokens: BTCZ - max supply: 200 million and BTCY - max supply 5 billion tokens
 
-- BTCZ: https://bscscan.com/token/0xf1177c04d7da80cb97a5c02511bbc9e076de13ab
-- BTCY: https://bscscan.com/token/0x53b384151607c2c7c56a8884621b0ee494556c3c
+- BCTZ: https://bscscan.com/token/0xAF2d5943cddf961E79Ba1265319D5338dcb3A31A
+- BCTY: https://bscscan.com/token/0x53b384151607c2c7c56a8884621b0ee494556c3c
 ## Token allocation
 
-- BTCZ will be divided into addresses with different holding rate and unlocking time
-- Tokenomics Contract: https://bscscan.com/address/0xc3b4956df110217e09e6f5dd32b26f29ac80a449
+- BCTZ will be divided into addresses with different holding rate and unlocking time
+- Tokenomics Contract: https://bscscan.com/address/0x5A1BEEe829fd2Ab93743C42BBf08a5fc620c226d
 - Check BTCZ init minters: 
 ```
 initMinters = ['angel', 'seed', 'private', 'public', 'boundty', 'award', 'marketing', 'liquidity', 'ecosystem', 'team', 'partner'];

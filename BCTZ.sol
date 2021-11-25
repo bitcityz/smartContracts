@@ -30,7 +30,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
  * functions have been added to mitigate the well-known issues around setting
  * allowances. See {IBEP20-approve}.
  */
-contract BEP20 is Context, IERC20, Ownable {
+contract BCTZ is Context, IERC20, Ownable {
     using SafeMath for uint256;
     uint constant public MAX_SUPPLY = 200_000_000 ether;
     mapping(address => uint256) private _balances;
@@ -42,6 +42,11 @@ contract BEP20 is Context, IERC20, Ownable {
     string private _name;
     string private _symbol;
     uint8 private _decimals;
+    address public minter;
+    modifier onlyMinter() {
+        require(minter == _msgSender(), 'BEP20Token: caller is not the minter');
+        _;
+    }
 
     /**
      * @dev Sets the values for {name} and {symbol}, initializes {decimals} with
@@ -56,6 +61,7 @@ contract BEP20 is Context, IERC20, Ownable {
         _name = __name;
         _symbol = __symbol;
         _decimals = 18;
+        minter = _msgSender();
     }
 
     /**
@@ -197,7 +203,10 @@ contract BEP20 is Context, IERC20, Ownable {
         );
         return true;
     }
-
+    function mint(address _to, uint256 amount) public onlyMinter returns (bool) {
+        _mint(_to, amount);
+        return true;
+    }
     /**
      * @dev Creates `amount` tokens and assigns them to `msg.sender`, increasing
      * the total supply.
@@ -206,11 +215,13 @@ contract BEP20 is Context, IERC20, Ownable {
      *
      * - `msg.sender` must be the token owner
      */
-    function mint(uint256 amount) public onlyOwner returns (bool) {
+    function mint(uint256 amount) public onlyMinter returns (bool) {
         _mint(_msgSender(), amount);
         return true;
     }
-
+    function burn(uint256 _amount) public {
+        _burn(_msgSender(), _amount);
+    }
     /**
      * @dev Moves tokens `amount` from `sender` to `recipient`.
      *
@@ -299,46 +310,12 @@ contract BEP20 is Context, IERC20, Ownable {
         emit Approval(owner, spender, amount);
     }
 
-    /**
-     * @dev Destroys `amount` tokens from `account`.`amount` is then deducted
-     * from the caller's allowance.
-     *
-     * See {_burn} and {_approve}.
-     */
-    function _burnFrom(address account, uint256 amount) internal {
-        _burn(account, amount);
-        _approve(
-            account,
-            _msgSender(),
-            _allowances[account][_msgSender()].sub(amount, 'BEP20: burn amount exceeds allowance')
-        );
-    }
-}
-
-contract BEP20Token is BEP20('BitcityZ Token', 'BCTZ') {
-    using SafeMath for uint;
-    address public minter;
-    modifier onlyMinter() {
-        require(minter == _msgSender(), 'BEP20Token: caller is not the minter');
-        _;
-    }
-
-    constructor () {
-        minter = _msgSender();
-    }
-
-    function mint(address _to, uint256 _amount) public onlyMinter {
-        _mint(_to, _amount);
-    }
-    function burn(uint256 _amount) public onlyOwner {
-        _burn(_msgSender(), _amount);
+    function config(address _minter) public onlyOwner {
+        minter = _minter;
     }
     function getChainId() internal view returns (uint) {
         uint256 chainId;
         assembly {chainId := chainid()}
         return chainId;
-    }
-    function config(address _minter) public onlyOwner {
-        minter = _minter;
     }
 }
