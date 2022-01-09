@@ -39,28 +39,16 @@ contract BCTZ is Context, IERC20, Ownable {
 
     uint256 private _totalSupply;
 
-    string private _name;
-    string private _symbol;
-    uint8 private _decimals;
+    string constant _name = 'BitcityZ';
+    string constant _symbol = 'BCTZ';
+    uint8 constant _decimals = 18;
     address public minter;
     modifier onlyMinter() {
         require(minter == _msgSender(), 'BEP20Token: caller is not the minter');
         _;
     }
 
-    /**
-     * @dev Sets the values for {name} and {symbol}, initializes {decimals} with
-     * a default value of 18.
-     *
-     * To select a different value for {decimals}, use {_setupDecimals}.
-     *
-     * All three of these values are immutable: they can only be set once during
-     * construction.
-     */
-    constructor(string memory __name, string memory __symbol) {
-        _name = __name;
-        _symbol = __symbol;
-        _decimals = 18;
+    constructor() {
         minter = _msgSender();
     }
 
@@ -74,21 +62,21 @@ contract BCTZ is Context, IERC20, Ownable {
     /**
      * @dev Returns the token name.
      */
-    function name() public view returns (string memory) {
+    function name() public pure returns (string memory) {
         return _name;
     }
 
     /**
      * @dev Returns the token decimals.
      */
-    function decimals() public view returns (uint8) {
+    function decimals() public pure returns (uint8) {
         return _decimals;
     }
 
     /**
      * @dev Returns the token symbol.
      */
-    function symbol() public view returns (string memory) {
+    function symbol() public pure returns (string memory) {
         return _symbol;
     }
 
