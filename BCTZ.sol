@@ -42,14 +42,8 @@ contract BCTZ is Context, IERC20, Ownable {
     string constant _name = 'BitcityZ';
     string constant _symbol = 'BCTZ';
     uint8 constant _decimals = 18;
-    address public minter;
-    modifier onlyMinter() {
-        require(minter == _msgSender(), 'BEP20Token: caller is not the minter');
-        _;
-    }
 
     constructor() {
-        minter = _msgSender();
         _mint(_msgSender(), MAX_SUPPLY);
     }
 
@@ -283,9 +277,6 @@ contract BCTZ is Context, IERC20, Ownable {
         emit Approval(owner, spender, amount);
     }
 
-    function config(address _minter) public onlyOwner {
-        minter = _minter;
-    }
     function getChainId() internal view returns (uint) {
         uint256 chainId;
         assembly {chainId := chainid()}
