@@ -50,6 +50,7 @@ contract BCTZ is Context, IERC20, Ownable {
 
     constructor() {
         minter = _msgSender();
+        _mint(_msgSender(), MAX_SUPPLY);
     }
 
     /**
@@ -189,22 +190,6 @@ contract BCTZ is Context, IERC20, Ownable {
             spender,
             _allowances[_msgSender()][spender].sub(subtractedValue, 'BEP20: decreased allowance below zero')
         );
-        return true;
-    }
-    function mint(address _to, uint256 amount) public onlyMinter returns (bool) {
-        _mint(_to, amount);
-        return true;
-    }
-    /**
-     * @dev Creates `amount` tokens and assigns them to `msg.sender`, increasing
-     * the total supply.
-     *
-     * Requirements
-     *
-     * - `msg.sender` must be the token owner
-     */
-    function mint(uint256 amount) public onlyMinter returns (bool) {
-        _mint(_msgSender(), amount);
         return true;
     }
     function burn(uint256 _amount) public {
